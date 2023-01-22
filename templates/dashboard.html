@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name="description" content="">
+
+    <title>PostingBot</title>
+
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='uk.js')}}"></script>
+    <script src="{{url_for('static', filename='dashboard.js')}}"></script>
+    <script type='module' src="{{url_for('static', filename='initTextInput.js')}}"></script>
+    <script src="{{url_for('static', filename='textversion.js')}}"></script>
+
+    <style>
+        .btn_row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 100%
+        }
+        
+        .btn_ {
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            margin-right: 2rem;
+            border-radius: 10px;
+            border: 1px;
+            border-style: solid;
+            border-color: black;
+            min-width: 400px;
+            height: 40%;
+            flex: 0.3;
+        }
+        
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .imgsContainer {
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        img {
+            margin-top: 2em;
+            margin-left: 2em;
+            max-width: 20rem;
+            border-style: solid;
+            border-width: 0.5px;
+            border-color: solid black;
+            height: 10rem;
+            flex: 0 1 calc(20% - 8px)
+        }
+        
+        .inputContainer {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            margin-top: 2rem
+        }
+        
+        .btnContainer {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .timeSelect {
+            margin-top: 1em;
+            flex: 0 1 calc(20% - 8px)
+        }
+        
+        .optionsContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: var(--bs-light); ">
+
+    <ul class="nav justify-content-center navbar-dark bg-dark ">
+        <li class="navbar-brand ">
+            <span class="fs-1 " href="# ">Posting Bot</span>
+        </li>
+        <li class="position-absolute top-0 end-0 " style="margin-top: 1rem;margin-right: 3rem; ">
+            <button type="button " class="btn btn-outline-success " id="compile " onclick="Publish() ">Опублікувати повідомлення</button>
+        </li>
+        <li class="position-absolute top-0 start-0 " style="margin-top: 1rem;margin-left: 3rem; ">
+            <button type="button " class="btn btn-outline-secondary" id="messages" onclick="MessagesList()">Минулі повідомлення</button>
+        </li>
+    </ul>
+
+    <div class="optionsContainer">
+        <input class="form-check-input " type="checkbox" id="delayCheck" name="delayCheck" style="flex: initial;" onchange="webPreviewStateChanged(this)">
+        <label class="form-check-label " style="flex: initial;">Відключити передперегляд посилання</label>
+    </div>
+
+    <div class="optionsContainer">
+        <div class="form-check">
+            <div class="optionsContainer">
+                <input class="form-check-input " type="checkbox" id="delayCheck" name="delayCheck" style="flex: initial;" onchange="delayStateChanged(this)">
+                <label class="form-check-label " style="flex: initial;">Відкладений пост</label>
+            </div>
+            <div id="timeContainer" style="display: none;">
+                <hr>
+                <input type="datetime-local" class="form-control timeSelect" id="timeInput" min="{{dates[0]}}" value="{{dates[0]}}" max="{{dates[1]}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="imgsContainer"></div>
+
+    <div class="row" style="padding-top: 2rem ">
+        <div class="col text-center ">
+            <button type="button " class="btn btn-outline-secondary btn-lg btn-block text-center " style="width: 30% " onclick="addImage()">Додати нове зображення</button>
+        </div>
+    </div>
+
+    <div class="inputContainer">
+        <textarea id="intro"></textarea>
+    </div>
+
+    <div class="col text-center btnContainer" id="buttonsContainer">
+    </div>
+
+    <div class="row ">
+        <div class="col text-center ">
+            <button type="button " class="btn btn-outline-secondary" style='height:40px' onclick="addButton(true)"><i class="material-icons">add_circle</i></button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+</body>
+
+</html>

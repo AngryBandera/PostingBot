@@ -1,0 +1,24 @@
+        # print(imgs)
+        # if len(imgs)>1:
+        #     first = True
+        #     media_group = []
+        #     i = 0
+        #     for img in imgs:
+        #         img = imgs[img]
+        #         # if img.filename=='local':
+        #         filename = f"{token[0:4]}_{chat_id[:4]}_{i}"
+        #         filenames.append(filename)
+        #         img.save(os.path.join(app.config["imgFolder"], secure_filename(filename)))
+        #         file = open(f'static/{filename}', 'rb')
+        #         # else:
+        #         #     file = img.filename
+                
+
+        #         media_group.append(InputMediaPhoto(file, caption=data['text'] if first else '', parse_mode='html'))
+        #         first = False
+        #         i+=1
+        #         if i == 10:
+        #             break
+        #     print(media_group)
+        #     print(chat_id, data['message_id'])
+        #     msg = Bot(token).edit_message_media(media=media_group[0], chat_id=chat_id, message_id=data['message_id'])
