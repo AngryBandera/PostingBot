@@ -13,11 +13,11 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
 
-IP = '185.237.206.40'
+IP = ''
 PORT = 1234
 IP = '127.0.0.1'
-SERVICE_ID = '729560932'
-TOKEN = "1714618330:AAE8zVajugM5_WFcvkU8LKUQ0BFYTWjDXTI"
+SERVICE_ID = ''
+TOKEN = ""
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
