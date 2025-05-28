@@ -27,7 +27,7 @@ channel = Table('channel', meta, Column('id', Integer, primary_key=True),
 
 # meta.create_all(engine)
 
-TOKEN = "1714618330:AAE8zVajugM5_WFcvkU8LKUQ0BFYTWjDXTI"
+TOKEN = ""
 
 updater = None
 
